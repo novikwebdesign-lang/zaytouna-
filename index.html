@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ZAYTOUNA — Huile d'olive et olives de notre ferme familiale.">
+<title>ZAYTOUNA | Huile d'olive & Olives</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root{
+  --black:#080b08;
+  --dark:#10150f;
+  --olive:#26351f;
+  --olive2:#34472b;
+  --gold:#c9a45c;
+  --gold-light:#ecd49a;
+  --cream:#f5f0e4;
+  --white:#fff;
+  --gray:#aaa99f;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--black);
+  color:var(--cream);
+  font-family:'Montserrat',sans-serif;
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button{
+  font-family:inherit;
+}
+
+/* LOADER */
+
+.loader{
+  position:fixed;
+  inset:0;
+  background:var(--black);
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  transition:opacity 1s, visibility 1s;
+}
+
+.loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:55px;
+  letter-spacing:12px;
+  color:var(--gold-light);
+}
+
+.loader-line{
+  width:120px;
+  height:1px;
+  background:var(--gold);
+  margin-top:18px;
+  animation:loading 1.5s infinite;
+}
+
+@keyframes loading{
+  0%{transform:scaleX(0);transform-origin:left}
+  50%{transform:scaleX(1);transform-origin:left}
+  51%{transform-origin:right}
+  100%{transform:scaleX(0);transform-origin:right}
+}
+
+/* NAVBAR */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  padding:24px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:.5s;
+}
+
+.navbar.scrolled{
+  background:rgba(8,11,8,.92);
+  backdrop-filter:blur(15px);
+  padding:15px 6%;
+  border-bottom:1px solid rgba(201,164,92,.15);
+}
+
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+  letter-spacing:7px;
+  color:var(--gold-light);
+  font-weight:600;
+}
+
+.logo span{
+  color:white;
+}
+
+.nav-links{
+  display:flex;
+  gap:38px;
+  list-style:none;
+}
+
+.nav-links a{
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#eee;
+  transition:.3s;
+  position:relative;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:0;
+  height:1px;
+  background:var(--gold);
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:var(--gold-light);
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.menu{
+  display:none;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.75)),
+    radial-gradient(circle at center,rgba(80,100,50,.3),transparent 60%),
+    var(--dark);
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  width:700px;
+  height:700px;
+  border-radius:50%;
+  border:1px solid rgba(201,164,92,.13);
+  animation:rotate 35s linear infinite;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  border:1px solid rgba(201,164,92,.1);
+  animation:rotate 25s linear infinite reverse;
+}
+
+@keyframes rotate{
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:1000px;
+  padding:130px 25px 80px;
+  animation:heroIn 1.5s ease;
+}
+
+@keyframes heroIn{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.eyebrow{
+  color:var(--gold-light);
+  letter-spacing:6px;
+  text-transform:uppercase;
+  font-size:11px;
+  margin-bottom:22px;
+}
+
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(80px,15vw,180px);
+  line-height:.78;
+  letter-spacing:15px;
+  font-weight:500;
+  color:white;
+  text-shadow:0 20px 70px rgba(0,0,0,.8);
+}
+
+.hero h1 span{
+  color:var(--gold-light);
+}
+
+.hero-subtitle{
+  max-width:650px;
+  margin:38px auto;
+  color:#d7d5cb;
+  font-family:'Cormorant Garamond',serif;
+  font-size:25px;
+  font-style:italic;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px 30px;
+  border:1px solid var(--gold);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:.4s;
+}
+
+.btn-gold{
+  background:var(--gold);
+  color:#111;
+}
+
+.btn-gold:hover{
+  background:var(--gold-light);
+  transform:translateY(-4px);
+  box-shadow:0 15px 35px rgba(201,164,92,.25);
+}
+
+.btn-outline{
+  color:white;
+}
+
+.btn-outline:hover{
+  background:var(--gold);
+  color:#111;
+  transform:translateY(-4px);
+}
+
+.scroll{
+  position:absolute;
+  bottom:35px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:#aaa;
+}
+
+.scroll::after{
+  content:"";
+  display:block;
+  width:1px;
+  height:45px;
+  background:var(--gold);
+  margin:12px auto 0;
+  animation:scrollLine 1.8s infinite;
+}
+
+@keyframes scrollLine{
+  0%,100%{height:25px;opacity:.3}
+  50%{height:45px;opacity:1}
+}
+
+/* GENERAL */
+
+section{
+  padding:120px 7%;
+}
+
+.section-head{
+  max-width:800px;
+  margin:auto;
+  text-align:center;
+}
+
+.label{
+  color:var(--gold);
+  letter-spacing:5px;
+  text-transform:uppercase;
+  font-size:10px;
+  font-weight:600;
+}
+
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(45px,6vw,75px);
+  font-weight:500;
+  line-height:1;
+  margin:18px 0;
+}
+
+.section-text{
+  color:var(--gray);
+  line-height:1.9;
+  font-size:14px;
+}
+
+/* INTRO */
+
+.intro{
+  background:
+    radial-gradient(circle at 20% 50%,rgba(48,69,36,.25),transparent 35%),
+    var(--black);
+}
+
+.intro-grid{
+  margin-top:70px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.intro-card{
+  padding:45px 35px;
+  border:1px solid rgba(201,164,92,.16);
+  background:linear-gradient(145deg,#151b13,#0b0e0a);
+  text-align:center;
+  transition:.5s;
+}
+
+.intro-card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(201,164,92,.6);
+  box-shadow:0 25px 60px rgba(0,0,0,.4);
+}
+
+.icon{
+  font-size:42px;
+  margin-bottom:25px;
+}
+
+.intro-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px;
+  margin-bottom:13px;
+}
+
+.intro-card p{
+  color:var(--gray);
+  font-size:13px;
+  line-height:1.8;
+}
+
+/* PRODUCTS */
+
+.products{
+  background:var(--cream);
+  color:#182015;
+}
+
+.products .label{
+  color:#667546;
+}
+
+.products .section-text{
+  color:#6f7169;
+}
+
+.products-grid{
+  margin-top:65px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+  max-width:1100px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.product{
+  min-height:480px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+  background:linear-gradient(145deg,#35472d,#152017);
+  transition:.5s;
+}
+
+.product:hover{
+  transform:translateY(-8px);
+}
+
+.product-bg{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 65% 35%,rgba(201,164,92,.25),transparent 25%),
+    radial-gradient(circle at 40% 70%,rgba(70,100,45,.5),transparent 35%);
+  transition:.7s;
+}
+
+.product:hover .product-bg{
+  transform:scale(1.08);
+}
+
+.product-content{
+  position:relative;
+  z-index:2;
+  width:100%;
+  padding:45px;
+  background:linear-gradient(transparent,rgba(0,0,0,.9));
+  color:white;
+}
+
+.product h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:46px;
+  font-weight:500;
+}
+
+.product p{
+  color:#ccc;
+  margin:8px 0 20px;
+  font-size:13px;
+}
+
+.price{
+  font-size:13px;
+  color:var(--gold-light);
+  letter-spacing:2px;
+}
+
+/* STORY */
+
+.story{
+  background:#0c100c;
+}
+
+.story-grid{
+  max-width:1200px;
+  margin:70px auto 0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+
+.story-visual{
+  min-height:600px;
+  position:relative;
+  background:
+    radial-gradient(circle at 50% 45%,rgba(201,164,92,.3),transparent 28%),
+    linear-gradient(145deg,#33452c,#0b0e0a);
+  overflow:hidden;
+}
+
+.story-visual::before{
+  content:"Z";
+  position:absolute;
+  font-family:'Cormorant Garamond',serif;
+  font-size:500px;
+  line-height:.8;
+  color:rgba(201,164,92,.07);
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+
+.story-circle{
+  position:absolute;
+  width:75%;
+  aspect-ratio:1;
+  border:1px solid rgba(201,164,92,.35);
+  border-radius:50%;
+  left:12.5%;
+  top:12%;
+}
+
+.story-content .section-title{
+  text-align:left;
+}
+
+.story-content .section-text{
+  margin-bottom:25px;
+}
+
+.signature{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+  font-style:italic;
+  color:var(--gold-light);
+  margin-top:35px;
+}
+
+/* NUMBERS */
+
+.numbers{
+  background:var(--olive);
+  padding:75px 7%;
+}
+
+.numbers-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  text-align:center;
+}
+
+.number{
+  border-right:1px solid rgba(255,255,255,.15);
+}
+
+.number:last-child{
+  border:none;
+}
+
+.number strong{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:60px;
+  color:var(--gold-light);
+  font-weight:500;
+}
+
+.number span{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  color:#d2d5cc;
+}
+
+/* GALLERY */
+
+.gallery{
+  background:var(--black);
+}
+
+.gallery-grid{
+  max-width:1200px;
+  margin:60px auto 0;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-template-rows:260px 260px;
+  gap:15px;
+}
+
+.gallery-item{
+  background:
+    linear-gradient(145deg,rgba(51,70,43,.9),rgba(15,20,13,.95));
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.5s;
+}
+
+.gallery-item::before{
+  content:"🫒";
+  font-size:70px;
+  opacity:.15;
+}
+
+.gallery-item:hover{
+  transform:scale(.98);
+}
+
+.gallery-item:first-child{
+  grid-row:span 2;
+}
+
+.gallery-item:first-child::before{
+  font-size:140px;
+}
+
+/* QUOTE */
+
+.quote-section{
+  background:
+    linear-gradient(rgba(14,19,12,.88),rgba(14,19,12,.88)),
+    var(--olive);
+  text-align:center;
+}
+
+.big-quote{
+  max-width:950px;
+  margin:auto;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(35px,5vw,65px);
+  line-height:1.15;
+  font-style:italic;
+}
+
+.big-quote span{
+  color:var(--gold-light);
+}
+
+/* CONTACT */
+
+.contact{
+  background:var(--cream);
+  color:#182015;
+  text-align:center;
+}
+
+.contact .section-text{
+  color:#70736a;
+  max-width:600px;
+  margin:0 auto 35px;
+}
+
+.whatsapp{
+  background:#263b25;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+
+.whatsapp:hover{
+  background:#344f31;
+}
+
+/* FOOTER */
+
+footer{
+  background:#070907;
+  padding:65px 7% 25px;
+}
+
+.footer-top{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:60px;
+  padding-bottom:55px;
+}
+
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:40px;
+  letter-spacing:7px;
+  color:var(--gold-light);
+}
+
+.footer-description{
+  color:#777;
+  max-width:380px;
+  margin-top:15px;
+  font-size:12px;
+  line-height:1.8;
+}
+
+footer h4{
+  color:white;
+  margin-bottom:18px;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+
+footer li{
+  list-style:none;
+  color:#777;
+  font-size:12px;
+  margin:10px 0;
+}
+
+.footer-bottom{
+  border-top:1px solid #1b2019;
+  padding-top:25px;
+  color:#555;
+  font-size:10px;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* REVEAL */
+
+.reveal{
+  opacity:0;
+  transform:translateY(45px);
+  transition:1s ease;
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+  .nav-links{
+    position:absolute;
+    top:70px;
+    left:0;
+    right:0;
+    background:rgba(8,11,8,.97);
+    display:none;
+    flex-direction:column;
+    padding:30px;
+    text-align:center;
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+
+  .menu{
+    display:block;
+  }
+
+  .hero h1{
+    letter-spacing:8px;
+  }
+
+  .intro-grid,
+  .products-grid,
+  .story-grid{
+    grid-template-columns:1fr;
+  }
+
+  .story-visual{
+    min-height:420px;
+  }
+
+  .numbers-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:35px;
+  }
+
+  .number:nth-child(2){
+    border:none;
+  }
+
+  .gallery-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:220px 220px 220px;
+  }
+
+  .gallery-item:first-child{
+    grid-column:span 2;
+    grid-row:auto;
+  }
+
+  .footer-top{
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:10px;
+  }
+}
+
+@media(max-width:500px){
+
+  section{
+    padding:85px 6%;
+  }
+
+  .hero h1{
+    font-size:65px;
+  }
+
+  .hero-subtitle{
+    font-size:21px;
+  }
+
+  .buttons{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .gallery-grid{
+    grid-template-columns:1fr;
+    grid-template-rows:repeat(4,200px);
+  }
+
+  .gallery-item:first-child{
+    grid-column:auto;
+  }
+
+  .number strong{
+    font-size:45px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+
+<div class="loader" id="loader">
+  <div class="loader-logo">ZAYTOUNA</div>
+  <div class="loader-line"></div>
+</div>
+
+<!-- NAVIGATION -->
+
+<header class="navbar" id="navbar">
+
+  <a href="#accueil" class="logo">
+    ZAYTOUNA
+  </a>
+
+  <nav>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#produits">Produits</a></li>
+      <li><a href="#histoire">Notre histoire</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="menu" id="menu">☰</div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="accueil">
+
+  <div class="hero-content">
+
+    <div class="eyebrow">
+      Ferme familiale • Maroc
+    </div>
+
+    <h1>
+      ZAY<span>TOUNA</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      L'authenticité de l'olivier,
+      la richesse de notre terre
+      et le savoir-faire de notre famille.
+    </p>
+
+    <div class="buttons">
+
+      <a href="#produits" class="btn btn-gold">
+        Découvrir nos produits
+      </a>
+
+      <a href="#histoire" class="btn btn-outline">
+        Notre histoire
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="scroll">
+    Découvrir
+  </div>
+
+</section>
+
+
+<!-- INTRO -->
+
+<section class="intro reveal">
+
+  <div class="section-head">
+
+    <div class="label">
+      L'essence de Zaytouna
+    </div>
+
+    <h2 class="section-title">
+      De nos oliviers<br>
+      à votre table.
+    </h2>
+
+    <p class="section-text">
+      Une huile et des olives qui racontent une terre,
+      une famille et des années de passion.
+      Chez ZAYTOUNA, chaque récolte est précieuse.
+    </p>
+
+  </div>
+
+
+  <div class="intro-grid">
+
+    <div class="intro-card">
+
+      <div class="icon">🌿</div>
+
+      <h3>Notre terre</h3>
+
+      <p>
+        Des oliviers cultivés avec soin
+        au cœur d'un environnement authentique.
+      </p>
+
+    </div>
+
+
+    <div class="intro-card">
+
+      <div class="icon">🫒</div>
+
+      <h3>Nos olives</h3>
+
+      <p>
+        Une sélection d'olives issues
+        directement de notre ferme familiale.
+      </p>
+
+    </div>
+
+
+    <div class="intro-card">
+
+      <div class="icon">🫗</div>
+
+      <h3>Notre huile</h3>
+
+      <p>
+        Une huile d'olive généreuse,
+        pensée pour préserver le goût de notre terroir.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section class="products reveal" id="produits">
+
+  <div class="section-head">
+
+    <div class="label">
+      Nos produits
+    </div>
+
+    <h2 class="section-title">
+      Le meilleur de<br>
+      notre récolte.
+    </h2>
+
+    <p class="section-text">
+      Découvrez les produits de la ferme ZAYTOUNA.
+      Les prix et formats seront personnalisés selon votre production.
+    </p>
+
+  </div>
+
+
+  <div class="products-grid">
+
+    <article class="product">
+
+      <div class="product-bg"></div>
+
+      <div class="product-content">
+
+        <h3>Huile d'olive</h3>
+
+        <p>
+          Notre huile d'olive issue de nos propres olives.
+        </p>
+
+        <div class="price">
+          PRIX / LITRE — À DÉFINIR
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article class="product">
+
+      <div class="product-bg"></div>
+
+      <div class="product-content">
+
+        <h3>Olives</h3>
+
+        <p>
+          Des olives sélectionnées directement
+          dans notre ferme.
+        </p>
+
+        <div class="price">
+          PRIX — À DÉFINIR
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- STORY -->
+
+<section class="story reveal" id="histoire">
+
+  <div class="story-grid">
+
+    <div class="story-visual">
+      <div class="story-circle"></div>
+    </div>
+
+
+    <div class="story-content">
+
+      <div class="label">
+        Notre histoire
+      </div>
+
+      <h2 class="section-title">
+        Plus qu'une ferme.
+        Un héritage.
+      </h2>
+
+      <p class="section-text">
+        ZAYTOUNA est avant tout une histoire familiale.
+        Une histoire construite autour de la terre,
+        des oliviers et du travail transmis au fil des années.
+      </p>
+
+      <p class="section-text">
+        Cette section pourra raconter l'histoire personnelle
+        de ton grand-père et présenter la ferme avec
+        ses propres photos.
+      </p>
+
+      <div class="signature">
+        La tradition continue.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- NUMBERS -->
+
+<section class="numbers reveal">
+
+  <div class="numbers-grid">
+
+    <div class="number">
+      <strong>01</strong>
+      <span>Ferme familiale</span>
+    </div>
+
+    <div class="number">
+      <strong>100%</strong>
+      <span>Authentique</span>
+    </div>
+
+    <div class="number">
+      <strong>∞</strong>
+      <span>Passion</span>
+    </div>
+
+    <div class="number">
+      <strong>🫒</strong>
+      <span>Du champ à la table</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<section class="gallery reveal" id="galerie">
+
+  <div class="section-head">
+
+    <div class="label">
+      La ferme
+    </div>
+
+    <h2 class="section-title">
+      Là où tout commence.
+    </h2>
+
+    <p class="section-text">
+      Les vraies photos de la ferme seront ajoutées ici :
+      oliviers, récolte, olives, huile et paysages.
+    </p>
+
+  </div>
+
+
+  <div class="gallery-grid">
+
+    <div class="gallery-item"></div>
+    <div class="gallery-item"></div>
+    <div class="gallery-item"></div>
+    <div class="gallery-item"></div>
+    <div class="gallery-item"></div>
+
+  </div>
+
+</section>
+
+
+<!-- QUOTE -->
+
+<section class="quote-section reveal">
+
+  <div class="big-quote">
+    « Une bonne huile commence par
+    <span>une bonne terre</span>,
+    de bons oliviers et beaucoup de passion. »
+  </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact reveal" id="contact">
+
+  <div class="section-head">
+
+    <div class="label">
+      Commandes & contact
+    </div>
+
+    <h2 class="section-title">
+      Découvrez ZAYTOUNA.
+    </h2>
+
+    <p class="section-text">
+      Contactez-nous pour connaître nos produits,
+      nos prix et les disponibilités de la ferme.
+    </p>
+
+    <a
+      class="btn whatsapp"
+      href="https://wa.me/"
+      target="_blank"
+    >
+      Commander sur WhatsApp
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-top">
+
+    <div>
+
+      <div class="footer-logo">
+        ZAYTOUNA
+      </div>
+
+      <p class="footer-description">
+        Huile d'olive & olives de notre ferme familiale.
+        Une identité née de la terre, de la tradition
+        et de la passion.
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <h4>Navigation</h4>
+
+      <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#produits">Produits</a></li>
+        <li><a href="#histoire">Notre histoire</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+      </ul>
+
+    </div>
+
+
+    <div>
+
+      <h4>Contact</h4>
+
+      <ul>
+        <li>WhatsApp — À ajouter</li>
+        <li>Adresse — À ajouter</li>
+        <li>Maroc</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <span>
+      © 2026 ZAYTOUNA
+    </span>
+
+    <span>
+      Qualité • Tradition • Savoir-faire
+    </span>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+/* LOADER */
+
+window.addEventListener("load",function(){
+
+  setTimeout(function(){
+
+    document
+      .getElementById("loader")
+      .classList
+      .add("hide");
+
+  },900);
+
+});
+
+
+/* NAVBAR */
+
+const navbar=document.getElementById("navbar");
+
+window.addEventListener("scroll",function(){
+
+  if(window.scrollY>60){
+    navbar.classList.add("scrolled");
+  }else{
+    navbar.classList.remove("scrolled");
+  }
+
+});
+
+
+/* MOBILE MENU */
+
+const menu=document.getElementById("menu");
+const navLinks=document.getElementById("navLinks");
+
+menu.addEventListener("click",function(){
+
+  navLinks.classList.toggle("active");
+
+});
+
+document.querySelectorAll(".nav-links a").forEach(function(link){
+
+  link.addEventListener("click",function(){
+
+    navLinks.classList.remove("active");
+
+  });
+
+});
+
+
+/* SCROLL REVEAL */
+
+const reveals=document.querySelectorAll(".reveal");
+
+const observer=new IntersectionObserver(function(entries){
+
+  entries.forEach(function(entry){
+
+    if(entry.isIntersecting){
+
+      entry.target.classList.add("visible");
+
+    }
+
+  });
+
+},{
+  threshold:.12
+});
+
+reveals.forEach(function(element){
+
+  observer.observe(element);
+
+});
+
+</script>
+
+</body>
+</html>
